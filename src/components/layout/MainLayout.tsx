@@ -1,18 +1,18 @@
 import { Outlet } from "react-router-dom";
-import Header from "./Header";
+import Navbar from "./Navbar";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "./RightSidebar";
 
 const MainLayout = () => {
   return (
-    <div>
-      <Header />
-      <div style={{ display: "flex" }}>
-        <LeftSidebar />
-        <main style={{ flex: 1 }}>
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <div className="max-w-screen-2xl mx-auto px-4 py-4">
+        <div className="flex gap-6">
+          <LeftSidebar />
           <Outlet />
-        </main>
-        <RightSidebar />
+          <RightSidebar />
+        </div>
       </div>
     </div>
   );
