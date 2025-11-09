@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { ArrowUp, ArrowDown, MessageSquare, Share2, Bookmark } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface PostCardProps {
   id: number;
@@ -18,6 +19,7 @@ interface PostCardProps {
 }
 
 const PostCard = ({
+  id,
   title,
   content,
   author,
@@ -29,6 +31,7 @@ const PostCard = ({
   timeAgo,
   image,
 }: PostCardProps) => {
+  const navigate = useNavigate();
   const [votes, setVotes] = useState(initialVotes);
   const [voteStatus, setVoteStatus] = useState<"up" | "down" | null>(null);
 
@@ -97,7 +100,10 @@ const PostCard = ({
           </div>
 
           {/* Title */}
-          <h3 className="font-semibold text-lg mb-2 text-foreground hover:text-primary cursor-pointer">
+          <h3 
+            onClick={() => navigate(`/post/${id}`)}
+            className="font-semibold text-lg mb-2 text-foreground hover:text-primary cursor-pointer"
+          >
             {title}
           </h3>
 
