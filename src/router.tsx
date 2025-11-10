@@ -6,6 +6,7 @@ import PostDetailPage from "./pages/PostDetailPage";
 import CreatePostPage from "./pages/CreatePostPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Auth from "./pages/Auth";
+import Communities from "./pages/Communities";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
   {
     path: "/auth",
     element: <Auth />,
+  },
+  {
+    path: "/communities",
+    element: <Communities />,
   },
   {
     path: "*",

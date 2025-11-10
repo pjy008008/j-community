@@ -72,10 +72,11 @@ const RightSidebar = () => {
             </div>
           ))}
         </div>
-
-        <Button variant="ghost" className="w-full mt-4 text-primary">
-          모두 보기
-        </Button>
+        <Link to="/communities">
+          <Button variant="ghost" className="w-full mt-4 text-primary">
+            모두 보기
+          </Button>
+        </Link>
       </Card>
 
       {/* Platform Info */}
