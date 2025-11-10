@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Bell, MessageSquare, Plus, User, Menu } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -10,7 +11,9 @@ const Navbar = () => {
           {/* Logo */}
           <a href="/" className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center">
-              <span className="text-xl font-bold text-primary-foreground">J</span>
+              <span className="text-xl font-bold text-primary-foreground">
+                J
+              </span>
             </div>
             <span className="text-xl font-bold text-foreground hidden sm:inline">
               Community
@@ -30,15 +33,25 @@ const Navbar = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="hidden sm:inline-flex">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden sm:inline-flex"
+            >
               <MessageSquare className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="hidden sm:inline-flex">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden sm:inline-flex"
+            >
               <Bell className="h-5 w-5" />
             </Button>
-            <Button variant="outline" size="icon">
-              <User className="h-5 w-5" />
-            </Button>
+            <Link to="/auth">
+              <Button variant="outline" size="icon">
+                <User className="h-5 w-5" />
+              </Button>
+            </Link>
             <Button variant="ghost" size="icon" className="md:hidden">
               <Menu className="h-5 w-5" />
             </Button>
