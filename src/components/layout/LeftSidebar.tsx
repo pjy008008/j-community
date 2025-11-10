@@ -1,6 +1,18 @@
-import { Home, TrendingUp, Compass, MessageSquare, Users, Settings, Code, Palette, Briefcase, Gamepad2 } from "lucide-react";
+import {
+  Home,
+  TrendingUp,
+  Compass,
+  MessageSquare,
+  Users,
+  Settings,
+  Code,
+  Palette,
+  Briefcase,
+  Gamepad2,
+} from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Link, useLocation } from "react-router-dom";
 
 const mainMenuItems = [
   { icon: Home, label: "홈", active: true },
@@ -16,6 +28,8 @@ const communities = [
 ];
 
 const LeftSidebar = () => {
+  const location = useLocation();
+
   return (
     <aside className="hidden lg:block w-64 h-[calc(100vh-4rem)] sticky top-16 overflow-y-auto">
       <Card className="border-0 shadow-none bg-transparent">
@@ -72,18 +86,36 @@ const LeftSidebar = () => {
         <Separator className="my-2" />
 
         <div className="p-4 space-y-1">
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground hover:bg-secondary/50 transition-colors">
-            <MessageSquare className="h-5 w-5" />
-            <span className="text-sm">메시지</span>
-          </button>
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground hover:bg-secondary/50 transition-colors">
-            <Users className="h-5 w-5" />
-            <span className="text-sm">프로필</span>
-          </button>
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground hover:bg-secondary/50 transition-colors">
-            <Settings className="h-5 w-5" />
-            <span className="text-sm">설정</span>
-          </button>
+          <Link to="/messages">
+            <button className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
+              location.pathname === "/messages"
+                ? "bg-secondary text-foreground font-medium"
+                : "text-muted-foreground hover:bg-secondary/50"
+            }`}>
+              <MessageSquare className="h-5 w-5" />
+              <span className="text-sm">메시지</span>
+            </button>
+          </Link>
+          <Link to="/profile">
+            <button className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
+              location.pathname === "/profile"
+                ? "bg-secondary text-foreground font-medium"
+                : "text-muted-foreground hover:bg-secondary/50"
+            }`}>
+              <Users className="h-5 w-5" />
+              <span className="text-sm">프로필</span>
+            </button>
+          </Link>
+          <Link to="/settings">
+            <button className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
+              location.pathname === "/settings"
+                ? "bg-secondary text-foreground font-medium"
+                : "text-muted-foreground hover:bg-secondary/50"
+            }`}>
+              <Settings className="h-5 w-5" />
+              <span className="text-sm">설정</span>
+            </button>
+          </Link>
         </div>
       </Card>
     </aside>
