@@ -92,7 +92,15 @@ const PostCard = ({
                 {community[0]}
               </AvatarFallback>
             </Avatar>
-            <span className="font-semibold text-foreground">j/{community}</span>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/community/${community}`);
+              }}
+              className="font-semibold text-foreground hover:underline"
+            >
+              j/{community}
+            </button>
             <span>•</span>
             <span>u/{author}</span>
             <span>•</span>

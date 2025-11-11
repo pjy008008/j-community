@@ -14,6 +14,7 @@ import Settings from "./pages/Settings";
 import Trending from "./pages/Trending";
 import Explore from "./pages/Explore";
 import Notifications from "./pages/Notifications";
+import CommunityDetail from "./pages/CommunityDetail";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
       {
         path: "settings",
         element: <Settings />,
+      },
+      {
+        path: "community/:communityName",
+        element: <CommunityDetail />,
       },
     ],
   },
