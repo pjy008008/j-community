@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { 
-  Users, 
-  TrendingUp, 
-  Search, 
+import {
+  Users,
+  TrendingUp,
+  Search,
   ArrowLeft,
   Gamepad2,
   Code,
@@ -19,100 +19,102 @@ import {
   Music,
   Camera,
   Heart,
-  Utensils
+  Utensils,
 } from "lucide-react";
 
 const communities = [
-  { 
-    name: "개발", 
-    members: "125k", 
+  {
+    name: "개발",
+    members: "125k",
     trend: "+2.5k",
     description: "프로그래밍, 웹/앱 개발, 코딩 관련 커뮤니티",
     icon: Code,
-    color: "bg-blue-500"
+    color: "bg-blue-500",
   },
-  { 
-    name: "커리어", 
-    members: "153k", 
+  {
+    name: "커리어",
+    members: "153k",
     trend: "+3.2k",
     description: "취업, 이직, 커리어 성장에 관한 이야기",
     icon: Briefcase,
-    color: "bg-purple-500"
+    color: "bg-purple-500",
   },
-  { 
-    name: "디자인", 
-    members: "82k", 
+  {
+    name: "디자인",
+    members: "82k",
     trend: "+1.8k",
     description: "UI/UX, 그래픽 디자인, 크리에이티브",
     icon: Palette,
-    color: "bg-pink-500"
+    color: "bg-pink-500",
   },
-  { 
-    name: "게임", 
-    members: "97k", 
+  {
+    name: "게임",
+    members: "97k",
     trend: "+2.1k",
     description: "게임 리뷰, 공략, 게이머들의 소통 공간",
     icon: Gamepad2,
-    color: "bg-green-500"
+    color: "bg-green-500",
   },
-  { 
-    name: "창업", 
-    members: "64k", 
+  {
+    name: "창업",
+    members: "64k",
     trend: "+1.5k",
     description: "스타트업, 사업 아이디어, 기업가 정신",
     icon: Rocket,
-    color: "bg-orange-500"
+    color: "bg-orange-500",
   },
-  { 
-    name: "독서", 
-    members: "48k", 
+  {
+    name: "독서",
+    members: "48k",
     trend: "+0.9k",
     description: "책 추천, 독후감, 독서 모임",
     icon: BookOpen,
-    color: "bg-yellow-500"
+    color: "bg-yellow-500",
   },
-  { 
-    name: "음악", 
-    members: "71k", 
+  {
+    name: "음악",
+    members: "71k",
     trend: "+1.2k",
     description: "음악 감상, 악기, 음악 제작",
     icon: Music,
-    color: "bg-red-500"
+    color: "bg-red-500",
   },
-  { 
-    name: "사진", 
-    members: "56k", 
+  {
+    name: "사진",
+    members: "56k",
     trend: "+1.1k",
     description: "사진 촬영 기법, 작품 공유, 카메라 리뷰",
     icon: Camera,
-    color: "bg-indigo-500"
+    color: "bg-indigo-500",
   },
-  { 
-    name: "건강", 
-    members: "89k", 
+  {
+    name: "건강",
+    members: "89k",
     trend: "+1.7k",
     description: "운동, 다이어트, 건강 관리",
     icon: Heart,
-    color: "bg-rose-500"
+    color: "bg-rose-500",
   },
-  { 
-    name: "요리", 
-    members: "62k", 
+  {
+    name: "요리",
+    members: "62k",
     trend: "+1.3k",
     description: "레시피 공유, 맛집 추천, 요리 팁",
     icon: Utensils,
-    color: "bg-amber-500"
+    color: "bg-amber-500",
   },
 ];
 
 const Communities = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState<"all" | "trending">("all");
+  const navigate = useNavigate();
 
   const filteredCommunities = communities
-    .filter(community => 
-      community.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      community.description.toLowerCase().includes(searchQuery.toLowerCase())
+    .filter(
+      (community) =>
+        community.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        community.description.toLowerCase().includes(searchQuery.toLowerCase())
     )
     .sort((a, b) => {
       if (filter === "trending") {
@@ -135,7 +137,9 @@ const Communities = () => {
               </Button>
             </Link>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">커뮤니티 탐색</h1>
+              <h1 className="text-2xl font-bold text-foreground">
+                커뮤니티 탐색
+              </h1>
               <p className="text-sm text-muted-foreground">
                 관심있는 커뮤니티를 찾아보세요
               </p>
@@ -181,23 +185,39 @@ const Communities = () => {
           {filteredCommunities.map((community) => {
             const Icon = community.icon;
             return (
-              <Card key={community.name} className="p-6 hover:shadow-medium transition-shadow">
+              <Card
+                key={community.name}
+                className="p-6 hover:shadow-medium transition-shadow"
+              >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className={`w-12 h-12 rounded-lg ${community.color} flex items-center justify-center`}>
+                    <div
+                      className={`w-12 h-12 rounded-lg ${community.color} flex items-center justify-center`}
+                    >
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg text-foreground">
-                        j/{community.name}
-                      </h3>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/community/${community.name}`);
+                        }}
+                        className="font-semibold text-foreground hover:underline"
+                      >
+                        <h3 className="font-bold text-lg text-foreground">
+                          j/{community.name}
+                        </h3>
+                      </button>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <Users className="h-3 w-3" />
                         <span>{community.members} 멤버</span>
                       </div>
                     </div>
                   </div>
-                  <Badge variant="secondary" className="text-green-600 bg-green-50 dark:bg-green-950">
+                  <Badge
+                    variant="secondary"
+                    className="text-green-600 bg-green-50 dark:bg-green-950"
+                  >
                     {community.trend}
                   </Badge>
                 </div>
@@ -208,9 +228,7 @@ const Communities = () => {
 
                 <Separator className="mb-4" />
 
-                <Button 
-                  className="w-full bg-gradient-primary hover:opacity-90 transition-opacity"
-                >
+                <Button className="w-full bg-gradient-primary hover:opacity-90 transition-opacity">
                   가입하기
                 </Button>
               </Card>
@@ -228,20 +246,36 @@ const Communities = () => {
         <Card className="mt-8 p-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             <div>
-              <div className="text-3xl font-bold text-primary">{communities.length}</div>
-              <div className="text-sm text-muted-foreground mt-1">총 커뮤니티</div>
+              <div className="text-3xl font-bold text-primary">
+                {communities.length}
+              </div>
+              <div className="text-sm text-muted-foreground mt-1">
+                총 커뮤니티
+              </div>
             </div>
             <div>
               <div className="text-3xl font-bold text-primary">
-                {communities.reduce((sum, c) => sum + parseInt(c.members.replace("k", "")), 0)}k
+                {communities.reduce(
+                  (sum, c) => sum + parseInt(c.members.replace("k", "")),
+                  0
+                )}
+                k
               </div>
               <div className="text-sm text-muted-foreground mt-1">총 멤버</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-primary">
-                {communities.reduce((sum, c) => sum + parseFloat(c.trend.replace(/[+k]/g, "")), 0).toFixed(1)}k
+                {communities
+                  .reduce(
+                    (sum, c) => sum + parseFloat(c.trend.replace(/[+k]/g, "")),
+                    0
+                  )
+                  .toFixed(1)}
+                k
               </div>
-              <div className="text-sm text-muted-foreground mt-1">이번 주 신규 가입</div>
+              <div className="text-sm text-muted-foreground mt-1">
+                이번 주 신규 가입
+              </div>
             </div>
           </div>
         </Card>
