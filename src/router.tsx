@@ -11,6 +11,7 @@ import Messages from "./pages/Messages";
 import SubLayout from "./components/layout/SubLayout";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
+import Trending from "./pages/Trending";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
         path: "submit",
         element: <CreatePostPage />,
       },
+      {
+        path: "trending",
+        element: <Trending />
+      }
     ],
   },
   {
