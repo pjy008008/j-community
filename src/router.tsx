@@ -15,6 +15,8 @@ import Trending from "./pages/Trending";
 import Explore from "./pages/Explore";
 import Notifications from "./pages/Notifications";
 import CommunityDetail from "./pages/CommunityDetail";
+import Terms from "./pages/Terms";
+import NavbarLayout from "./components/layout/NavbarLayout";
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +68,16 @@ export const router = createBrowserRouter([
       {
         path: "community/:id",
         element: <CommunityDetail />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <NavbarLayout />,
+    children: [
+      {
+        path: "/terms",
+        element: <Terms />,
       },
     ],
   },

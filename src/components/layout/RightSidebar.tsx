@@ -120,12 +120,14 @@ const RightSidebar = () => {
         <Separator className="my-3" />
 
         <div className="space-y-1">
-          <a
-            href="#"
-            className="text-xs text-muted-foreground hover:text-primary block"
-          >
-            이용약관
-          </a>
+          <Link to="/terms">
+            <a
+              href="#"
+              className="text-xs text-muted-foreground hover:text-primary block"
+            >
+              이용약관
+            </a>
+          </Link>
           <a
             href="#"
             className="text-xs text-muted-foreground hover:text-primary block"

@@ -182,9 +182,11 @@ const Auth = () => {
         {/* Privacy Notice */}
         <p className="text-xs text-center text-muted-foreground">
           로그인 시{" "}
-          <a href="#" className="text-primary hover:underline">
-            이용약관
-          </a>
+          <Link to="/terms">
+            <a href="#" className="text-primary hover:underline">
+              이용약관
+            </a>
+          </Link>
           과{" "}
           <a href="#" className="text-primary hover:underline">
             개인정보처리방침
