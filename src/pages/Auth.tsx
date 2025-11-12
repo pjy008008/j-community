@@ -188,9 +188,11 @@ const Auth = () => {
             </a>
           </Link>
           과{" "}
-          <a href="#" className="text-primary hover:underline">
-            개인정보처리방침
-          </a>
+          <Link to="/privacy">
+            <a href="#" className="text-primary hover:underline">
+              개인정보처리방침
+            </a>
+          </Link>
           에 동의하는 것으로 간주됩니다.
         </p>
 

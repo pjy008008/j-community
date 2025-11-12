@@ -128,12 +128,14 @@ const RightSidebar = () => {
               이용약관
             </a>
           </Link>
-          <a
-            href="#"
-            className="text-xs text-muted-foreground hover:text-primary block"
-          >
-            개인정보처리방침
-          </a>
+          <Link to="/privacy">
+            <a
+              href="#"
+              className="text-xs text-muted-foreground hover:text-primary block"
+            >
+              개인정보처리방침
+            </a>
+          </Link>
           <a
             href="#"
             className="text-xs text-muted-foreground hover:text-primary block"

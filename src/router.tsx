@@ -17,6 +17,7 @@ import Notifications from "./pages/Notifications";
 import CommunityDetail from "./pages/CommunityDetail";
 import Terms from "./pages/Terms";
 import NavbarLayout from "./components/layout/NavbarLayout";
+import Privacy from "./pages/Privacy";
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
       {
         path: "/terms",
         element: <Terms />,
+      },
+      {
+        path: "/privacy",
+        element: <Privacy />,
       },
     ],
   },
