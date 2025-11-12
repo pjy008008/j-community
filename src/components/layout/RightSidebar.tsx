@@ -136,12 +136,14 @@ const RightSidebar = () => {
               개인정보처리방침
             </a>
           </Link>
-          <a
-            href="#"
-            className="text-xs text-muted-foreground hover:text-primary block"
-          >
-            커뮤니티 가이드
-          </a>
+          <Link to="/guidelines">
+            <a
+              href="#"
+              className="text-xs text-muted-foreground hover:text-primary block"
+            >
+              커뮤니티 가이드
+            </a>
+          </Link>
         </div>
 
         <div className="mt-3 pt-3 border-t border-border">
