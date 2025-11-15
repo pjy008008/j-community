@@ -1,8 +1,15 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ArrowUp, ArrowDown, MessageSquare, Share2, Bookmark } from "lucide-react";
+import {
+  ArrowUp,
+  ArrowDown,
+  MessageSquare,
+  Share2,
+  Bookmark,
+} from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 interface PostCardProps {
   id: number;
@@ -32,8 +39,10 @@ const PostCard = ({
   image,
 }: PostCardProps) => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [votes, setVotes] = useState(initialVotes);
   const [voteStatus, setVoteStatus] = useState<"up" | "down" | null>(null);
+  const [isSaved, setIsSaved] = useState(false);
 
   const handleVote = (type: "up" | "down") => {
     if (voteStatus === type) {
@@ -47,6 +56,37 @@ const PostCard = ({
       }
       setVoteStatus(type);
     }
+  };
+
+  const handleComment = () => {
+    navigate(`/post/${id}`);
+  };
+
+  const handleShare = async () => {
+    const url = `${window.location.origin}/post/${id}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      toast({
+        title: "링크가 복사되었습니다",
+        description: "클립보드에 게시물 링크가 복사되었습니다.",
+      });
+    } catch (error) {
+      toast({
+        title: "복사 실패",
+        description: "링크 복사에 실패했습니다.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleSave = () => {
+    setIsSaved(!isSaved);
+    toast({
+      title: isSaved ? "저장 취소" : "저장됨",
+      description: isSaved
+        ? "게시물 저장이 취소되었습니다."
+        : "게시물이 저장되었습니다.",
+    });
   };
 
   return (
@@ -76,7 +116,9 @@ const PostCard = ({
           <button
             onClick={() => handleVote("down")}
             className={`p-1 rounded hover:bg-secondary transition-colors ${
-              voteStatus === "down" ? "text-destructive" : "text-muted-foreground"
+              voteStatus === "down"
+                ? "text-destructive"
+                : "text-muted-foreground"
             }`}
           >
             <ArrowDown className="h-5 w-5" />
@@ -88,11 +130,13 @@ const PostCard = ({
           {/* Header */}
           <div className="flex items-center gap-2 mb-2 text-xs text-muted-foreground">
             <Avatar className="h-5 w-5">
-              <AvatarFallback className={`${communityColor} text-white text-xs`}>
+              <AvatarFallback
+                className={`${communityColor} text-white text-xs`}
+              >
                 {community[0]}
               </AvatarFallback>
             </Avatar>
-            <button 
+            <button
               onClick={(e) => {
                 e.stopPropagation();
                 navigate(`/community/${community}`);
@@ -108,7 +152,7 @@ const PostCard = ({
           </div>
 
           {/* Title */}
-          <h3 
+          <h3
             onClick={() => navigate(`/post/${id}`)}
             className="font-semibold text-lg mb-2 text-foreground hover:text-primary cursor-pointer"
           >
@@ -133,16 +177,29 @@ const PostCard = ({
 
           {/* Actions */}
           <div className="flex items-center gap-4 text-muted-foreground">
-            <button className="flex items-center gap-1.5 px-2 py-1 rounded hover:bg-secondary transition-colors">
+            <button
+              onClick={handleComment}
+              className="flex items-center gap-1.5 px-2 py-1 rounded hover:bg-secondary transition-colors"
+            >
               <MessageSquare className="h-4 w-4" />
               <span className="text-sm font-medium">{comments} 댓글</span>
             </button>
-            <button className="flex items-center gap-1.5 px-2 py-1 rounded hover:bg-secondary transition-colors">
+            <button
+              onClick={handleShare}
+              className="flex items-center gap-1.5 px-2 py-1 rounded hover:bg-secondary transition-colors"
+            >
               <Share2 className="h-4 w-4" />
               <span className="text-sm font-medium">공유</span>
             </button>
-            <button className="flex items-center gap-1.5 px-2 py-1 rounded hover:bg-secondary transition-colors">
-              <Bookmark className="h-4 w-4" />
+            <button
+              onClick={handleSave}
+              className={`flex items-center gap-1.5 px-2 py-1 rounded hover:bg-secondary transition-colors ${
+                isSaved ? "text-primary" : ""
+              }`}
+            >
+              <Bookmark
+                className={`h-4 w-4 ${isSaved ? "fill-current" : ""}`}
+              />
               <span className="text-sm font-medium">저장</span>
             </button>
           </div>
