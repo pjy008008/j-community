@@ -31,7 +31,7 @@ const LeftSidebar = () => {
   const location = useLocation();
 
   return (
-    <aside className="hidden lg:block w-64 h-[calc(100vh-4rem)] sticky top-16 overflow-y-hidden">
+    <aside className="hidden lg:block w-64 h-[calc(100vh-4rem)] sticky top-16 overflow-y-auto scrollbar-hide">
       <Card className="border-0 shadow-none bg-transparent">
         <div className="p-4 space-y-1">
           {mainMenuItems.map((item, index) => {

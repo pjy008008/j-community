@@ -4,6 +4,10 @@
 
 
 @layer base {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   :root {
     --background: 220 20% 98%;
     --foreground: 220 25% 15%;

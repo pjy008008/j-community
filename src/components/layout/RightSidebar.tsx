@@ -14,7 +14,7 @@ const trendingCommunities = [
 
 const RightSidebar = () => {
   return (
-    <aside className="hidden xl:block w-80 h-[calc(100vh-4rem)] sticky top-16 space-y-4 overflow-y-hidden">
+    <aside className="hidden xl:block w-80 h-[calc(100vh-4rem)] sticky top-16 space-y-4 overflow-y-auto scrollbar-hide">
       {/* Community Info */}
       <Card className="p-4">
         <div className="flex items-center gap-2 mb-4">
